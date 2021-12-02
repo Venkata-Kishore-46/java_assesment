@@ -1,0 +1,150 @@
+1) Cricket:-
+
+package cricket;
+import java.util.*;
+
+public class Cricket {
+
+	public static void main(String[] args) {
+		
+		 Scanner sc=new Scanner(System.in);
+		 System.out.print("Enter Number Of Overs:");
+		 
+		 int totalovers = sc.nextInt();
+		 System.out.print("Enter Total Runs:");
+		 
+		 int totalruns = sc.nextInt();
+		 System.out.print("Enter No Of Overs Bowled:");
+		 
+		 int noofoverbowled = sc.nextInt();;
+		 System.out.print("Enter No Runs Scored So Far:");
+		 
+		 int runsofar = sc.nextInt();
+		 float truns=runsofar/noofoverbowled;
+		 System.out.println("Current Run Rate"+truns);
+		 
+		 float rrate=(float)(totalruns-runsofar)/(float)(totalovers-noofoverbowled);
+		 System.out.println("Required Run Rate:"+rrate);
+		 
+		 
+		 
+		}
+		}
+===========================================================
+2)Expenses:-
+
+package cricket;
+
+import java.util.Scanner;
+
+public class Expenses {
+
+	public static void main(String[] args) {
+		
+		Scanner sc=new Scanner(System.in);
+		System.out.print("Enter branding expenses:");
+		int brandingexpenses = sc.nextInt();
+		System.out.print("Enter travel expenses:");
+		int travelexpenses = sc.nextInt();
+		System.out.print("Enter food expenses:");
+		int foodexpenses = sc.nextInt();;
+		System.out.print("Enter logistics expenses:");
+		float logisticsexpenses = sc.nextInt();
+		float total=(float)(brandingexpenses+logisticsexpenses+travelexpenses+foodexpenses);
+		System.out.println("total expenses:"+total);
+		System.out.printf("branding espenses: %.2f\n",((double)(brandingexpenses)/(double)(total))*100);
+		System.out.printf("travel espenses: %.2f\n",((double)(travelexpenses)/(double)(total))*100);
+		System.out.printf("food espenses: %.2f\n",((double)(foodexpenses)/(double)(total))*100);
+		System.out.printf("logistics espenses: %.2f\n",((double)(logisticsexpenses)/(double)(total))*100);
+	}
+}
+==========================================================
+3)Currency:-
+
+package cricket;
+
+import java.util.Scanner;
+
+
+public class Currency {
+
+	
+		    public static void countCurrency(int amount1) 
+		    { 
+		    	Scanner sc=new Scanner(System.in);
+		    	int r1,r2,r3,r4,r5,r6;
+		    	int sum;
+		    	int amount;
+		    	System.out.println("Enter the amount");
+		    	amount1=sc.nextInt();
+		    	r1=amount1/100;
+		    	amount1=amount1%100;
+
+		    	r2=amount1/50;
+		    	amount1=amount1%50;
+		    	r3=amount1/10;
+		    	amount1=amount1%10;
+
+		    	r4=amount1/5;
+		    	amount1=amount1%5;
+
+		    	r5=amount1/2;
+		    	amount1=amount1%2;
+
+		    	r6=amount1;
+		    	sum=r1+r2+r3+r4+r5+r6;
+		    	System.out.println(sum);
+
+
+
+		    	}
+
+		    	}
+====================================================================
+4) Magic:-
+
+package cricket;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+
+public class Magic {
+
+	public static void main(String[] args) {
+		
+
+
+try (Scanner scanner = new Scanner(System.in)) {
+	
+
+	System.out.println("Enter the number of people who watched show 1: ");
+	 int showOneViewers = scanner.nextInt();
+	 System.out.println("Enter the average rating for show 1: "); 
+     float showOneRating = scanner.nextFloat();
+     
+     System.out.println("Enter the number of people who watched show 2: ");
+     float showTwoViewers = scanner.nextInt(); 
+     System.out.println("Enter the average rating for show 2: "); 
+     float showTwoRating = scanner.nextFloat();
+
+     System.out.println("Enter the number of people who watched show 3: "); 
+     int showThreeViewers = scanner.nextInt();
+     System.out.println("enter the average rating for show 3: ");
+     float showThreeRating = scanner.nextFloat();
+
+     
+     Object averageRating = (((showOneRating* showOneViewers) + (showTwoRating*showTwoViewers) + (showThreeRating * showThreeViewers)) / (showOneViewers + showTwoViewers + showThreeViewers));
+
+       System.out.printf("The overall average rating for the show is: %.2f", averageRating); 
+} 
+	catch (final InputMismatchException inputMismatchException) {
+		  System.out.println("Enter Invalid input");
+	}}}
+
+
+
+
+
+ 
+		
