@@ -1,0 +1,118 @@
+1)Archery:---
+
+package cricket;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Archery {
+
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		 System.out.println("Enter the target:");
+		 int target=sc.nextInt();
+		 int[] turns=new int[10];
+		 int i;
+		 
+		 for(i=1;i<=10;i++){
+			 System.out.println("enter the point");
+			 turns[i]=sc.nextInt();
+			 int sum=Arrays.stream(turns).sum();
+			 if(sum>=target)
+				 break;
+			 
+		 }
+		 System.out.println("total turns"+i);
+		 
+	
+	}
+	
+
+
+}
+
+================================================
+2)Chocolates:-
+
+
+package cricket;
+
+import java.util.Scanner;
+
+public class Chocolates {
+
+	static int count=0;
+	public static void main(String[] args){
+		int chocolates,children;
+		Scanner sc=new Scanner(System.in);
+		System.out.println("enter no.of chocolates:");
+		chocolates=sc.nextInt();
+		System.out.println("Enter no.of children:");
+		children=sc.nextInt();
+		for(int i=0;i<=children;i++){
+			if(chocolates>=i){
+				chocolates=chocolates-i;
+				count++;
+			}
+		}
+		System.out.println("Chocolates remaining "+chocolates);
+		System.out.println("How many children got Chocolates "+count);
+	}
+}
+
+==============================================================
+3) Water Melon:-
+
+package cricket;
+
+import java.util.Scanner;
+
+public class Watermelon {
+
+	
+		static int count; 
+		public static void main(String[] args) 
+		{
+			Scanner sc=new Scanner(System.in); 
+			
+			System.out.print("Enter the weight of Watermelon :"); 
+			int weight=sc.nextInt();
+
+
+	if(weight%2!=0){
+
+	System.out.println("Sorry, You can't Buy Look for Even");
+	}
+
+	else{
+
+	for(int i=1;i<weight;i++)
+	{
+		for(int j=1;j<=weight;j++)
+		{
+			int temp=i+j; if(temp==weight)
+			{ 
+				if(temp==weight){
+				count++; 
+				System.out.println(i+" "+j); }
+		
+	}
+
+	}
+
+	} 
+		System.out.println("Possible Splitting :"+count);
+
+	}
+		}
+	}
+
+
+======================================================
+
+
+	
+		 
+
+
+
