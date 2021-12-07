@@ -1,0 +1,146 @@
+
+// Question 3
+// ItemType.java
+
+public class ItemType {
+	private String name;
+	private Double deposit;
+	private Double costPerDay;
+
+	public ItemType() {
+	}
+
+	public ItemType(String name, Double deposit, Double costPerDay) {
+		this.name = name;
+		this.deposit = deposit;
+		this.costPerDay = costPerDay;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Double getDeposit() {
+		return deposit;
+	}
+
+	public void setDeposit(Double deposit) {
+		this.deposit = deposit;
+	}
+
+	public Double getCostPerDay() {
+		return costPerDay;
+	}
+
+	public void setCostPerDay(Double costPerDay) {
+		this.costPerDay = costPerDay;
+	}
+
+	@Override
+	public String toString() {
+		return new StringBuilder().append("Name:")
+				.append(name)
+				.append("\nDeposit Amount:")
+				.append(deposit)
+				.append("\nCost Per Day:")
+				.append(costPerDay)
+				.toString();
+	}
+
+}
+
+// ItemTypeBO.java
+
+public class ItemTypeBO {
+	public void add(ItemType object, ItemType[] itemTypeArray, Integer index) {
+		itemTypeArray[index] = object;
+		System.out.println("New item added successfully");
+	}
+
+	public void search(String search, ItemType[] itemTypeArray) {
+		boolean isFound = false;
+
+		for (ItemType item : itemTypeArray) {
+			if (item.getName()
+					.equals(search)) {
+				isFound = true;
+				System.out.println("Searched Item Type is:");
+				System.out.println(item);
+
+			}
+		}
+
+		if (!isFound) {
+			System.out.println("Searched Item Type not found");
+		}
+	}
+
+	public void display(ItemType[] itemTypeArray) {
+		for (int i = 0; i < itemTypeArray.length; i++) {
+			System.out.printf("Item Type Number %d:\n", i + 1);
+			System.out.println(itemTypeArray[i]);
+		}
+	}
+}
+
+// Main.java
+
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+
+	public static void main(String[] args) {
+		int itemTypeCount = 0;
+		ItemType[] itemTypeArray = null;
+		ItemType itemType = null;
+		ItemTypeBO itemTypeBO = null;
+		String search = null;
+
+		try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in))) {
+			itemTypeBO = new ItemTypeBO();
+
+			System.out.println("Enter the Number of Item Type");
+			itemTypeCount = Integer.parseInt(bufferedReader.readLine());
+
+			itemTypeArray = new ItemType[itemTypeCount];
+
+			for (int i = 0; i < itemTypeCount; i++) {
+				itemType = new ItemType();
+
+				System.out.printf("Enter the Item Type %d Name\n", i + 1);
+				itemType.setName(bufferedReader.readLine());
+
+				System.out.println("Enter the Deposit Amount");
+				itemType.setDeposit(Double.parseDouble(bufferedReader.readLine()));
+
+				System.out.println("Enter the Cost per day");
+				itemType.setCostPerDay(Double.parseDouble(bufferedReader.readLine()));
+
+				itemTypeBO.add(itemType, itemTypeArray, i);
+			}
+
+			itemTypeBO.display(itemTypeArray);
+
+			System.out.println("Enter the Name of the item to be searched");
+			search = bufferedReader.readLine();
+
+			itemTypeBO.search(search, itemTypeArray);
+
+		} catch (IOException ioException) {
+			System.err.println("Error: IO error occurred");
+		} catch (NumberFormatException inputMismatchException) {
+			System.err.println("Error: Invalid input");
+		} catch (Exception exception) {
+			System.err.println("Error: An error occurred");
+		}
+
+	}
+
+}

@@ -1,0 +1,179 @@
+1st:
+-----
+package Train;
+import java.util.*;
+
+public class Account {
+	 protected String accName;
+	 protected String accNum;
+	 protected String bankName;
+	 protected String orgName;
+	 public String getAccName() {
+	  return accName;
+	 }
+	 public void setAccName(String accName) {
+	  this.accName = accName;
+	 }
+	 public String getAccNo() {
+	  return accNum;
+	 }
+	 public void setAccNo(String accNo) {
+	  this.accNum = accNo;
+	 }
+	 public String getBankName() {
+	  return bankName;
+	 }
+	 public void setBankName(String bankName) {
+	  this.bankName = bankName;
+	 }
+	 public String getOrgName() {
+		  return orgName;
+		 }
+		 public void setOrgName(String orgName) {
+		  this.orgName = orgName;
+		 }
+		
+	 void display() {
+	  System.out.println("Account Details : "+accName+" "+accNum+" "+bankName+""+orgName);
+	 }
+
+	}
+
+=============================================================================================================================
+2nd:
+-------
+package Train;
+class SavingsAccount extends Account {
+	private String orgName;
+	SavingsAccount(){}
+
+	SavingsAccount(String accName,String accNo,String bankName,String orgName){
+		super();
+		this.accName=accName;
+		this.accNum=accNo;
+		this.bankName=bankName;
+		this.orgName=orgName;
+	}
+
+	public String getOrgName() {
+		return orgName;
+	}
+
+	public void setOrgName(String orgName) {
+		this.orgName = orgName;
+	}
+
+	void display() {
+
+	}
+
+	@Override
+	public String toString() {
+		return "Account Name:" + accName + "\nAccount Number:" + accNum + "\nBank Name:"
+				+ bankName+"\nOrganisation Name:"+orgName;
+	}
+
+}
+
+=============================================================================================
+3rd:
+------
+
+package Train;
+import java.util.*;
+
+public class CurrentAccount extends Account {
+	 String AccName;
+	 String AccNum;
+	 String BankName;
+	 String TinNO;
+	 public CurrentAccount(String accName,String accNum,String bankName,String tinNo){
+		 this.AccName = accName;
+		 this.AccNum = accNum;
+		 this.BankName = bankName;
+		 this.TinNO = tinNo;
+	 }
+	 public String getAccName()
+		{
+			return AccName;
+		}
+	 public String getAccNum()
+		{
+			return AccNum;
+		}
+	 public String getBankName()
+		{
+			return BankName;
+		}
+	 public String getTinNO()
+		{
+			return TinNO;
+		}
+	 public void display(){
+		 super.display();
+		 System.out.println("Account Details : "+TinNO);
+	 }
+}
+
+=====================================================================================================
+4th:
+------
+package Train;
+import java.util.Scanner;
+
+public class Main {
+
+	static Scanner sc=new Scanner(System.in);
+
+	public static void main(String[] args) {
+
+		System.out.println("Choose Account Type\r\n"+ "1.Savings Account\r\n"
+				+ "2.Current Account");
+				
+		int number=sc.nextInt();
+
+		System.out.println("Enter Account details in comma separated(Account Name,Account Number,Bank Name,Organisation Name)");
+		String CString=sc.next();
+		String[] result = CString.split(",");
+		String accName = result[0];
+		String accNo = result[1];
+		String bankName = result[2];
+
+		if(number==1) {
+			String orgName=result[3];
+			SavingsAccount SavingsObj=new SavingsAccount(accName,accNo,bankName,orgName);
+			System.out.println(SavingsObj.toString());
+
+		}else {
+			String tinNumber=result[3];
+			CurrentAccount CurrentObj=new CurrentAccount(accName,accNo,bankName,tinNumber);
+			System.out.println(CurrentObj.toString());
+
+		}
+
+	}}
+=======================================================================================================================================
+Out put:
+---------
+Choose Account Type
+1.Savings Account
+2.Current Account
+1
+Enter Account details in comma separated(Account Name,Account Number,Bank Name,Organisation Name)
+kishore,112345674568,sbi,Nellore
+Account Name:kishore
+Account Number:112345674568
+Bank Name:Sbi
+Organisation Name:Nellore
+
+Sample Input/Output-2:
+Choose Account Type
+1.Savings Account
+2.Current Account
+2
+Enter Account details in comma separated(Account Name,Account Number,Bank Name,TIN Number)
+Aarya,1312321,Hdfc,698979
+Account Name:Aarya
+Account Number:131231
+Bank Name:Hdfc
+TIN Number:698979

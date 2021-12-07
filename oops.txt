@@ -1,0 +1,484 @@
+
+
+
+1)ItemType.java
+-----------------
+
+public class ItemType {
+    private String name;
+    private Double costPerDay;
+    private Double deposit;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Double getCostPerDay() {
+        return costPerDay;
+    }
+
+    public void setCostPerDay(Double costPerDay) {
+        this.costPerDay = costPerDay;
+    }
+
+    public Double getDeposit() {
+        return deposit;
+    }
+
+    public void setDeposit(Double deposit) {
+        this.deposit = deposit;
+    }
+
+    public void display() {
+        System.out.println("Item type details");
+        System.out.println("Name : " + name);
+        System.out.printf("CostPerDay : %.2f \n", costPerDay);
+        System.out.printf("Deposit : %.2f", deposit);
+    }
+
+}
+
+
+
+
+
+// Main.java
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        ItemType itemType = null;
+
+        try (Scanner scanner = new Scanner(System.in)) {
+            itemType = new ItemType();
+
+            System.out.println("Enter the item type name");
+            itemType.setName(scanner.next());
+
+            System.out.println("Enter the cost per day");
+            itemType.setCostPerDay(scanner.nextDouble());
+
+            System.out.println("Enter the deposit");
+            itemType.setDeposit(scanner.nextDouble());
+
+            itemType.display();
+        } catch (InputMismatchException inputMismatchException) {
+            System.err.println("Error: Invalid input");
+        } catch (Exception exception) {
+            System.err.println("Error: An error occurred");
+        }
+    }
+
+}
+
+
+==========================================================
+
+
+
+
+
+2)Customer.java
+--------------------
+
+public class Customer {
+    public String customerName;
+    public String customerEmail;
+    public String customerType;
+    public String customerAddress;
+
+    public Customer() {
+    }
+
+    public Customer(String customerName, String customerEmail, String customerType, String customerAddress) {
+        this.customerName = customerName;
+        this.customerEmail = customerEmail;
+        this.customerType = customerType;
+        this.customerAddress = customerAddress;
+    }
+
+    public void displayDetails() {
+        System.out.println("Name: " + customerName);
+        System.out.println("E-mail: " + customerEmail);
+        System.out.println("Type: " + customerType);
+        System.out.println("Location: " + customerAddress);
+    }
+
+}
+
+
+
+// Main.java::::
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Customer customer = null;
+        String customerName, customerEmail, customerType, customerAddress;
+
+        try (Scanner scanner = new Scanner(System.in)) {
+            System.out.println("Enter the Customer Details");
+
+            System.out.println("Enter the name");
+            customerName = scanner.next();
+
+            System.out.println("Enter the email");
+            customerEmail = scanner.next();
+
+            System.out.println("Enter the type");
+            customerType = scanner.next();
+
+            System.out.println("Enter the location");
+            customerAddress = scanner.next();
+
+            customer = new Customer(customerName, customerEmail, customerType, customerAddress);
+
+            customer.displayDetails();
+
+        } catch (InputMismatchException inputMismatchException) {
+            System.err.println("Error: Invalid input");
+        } catch (Exception exception) {
+            System.err.println("Error: An error occurred");
+        }
+    }
+}
+
+
+=============================================================
+
+
+
+
+3)Address.java
+----------------
+
+import java.util.Objects;
+
+public class Address {
+	private String street;
+	private String city;
+	private Integer pincode;
+
+	public Address() {
+	}
+
+	public Address(String street, String city, Integer pincode) {
+		this.street = street;
+		this.city = city;
+		this.pincode = pincode;
+	}
+
+	public String getStreet() {
+		return street;
+	}
+
+	public void setStreet(String street) {
+		this.street = street;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public Integer getPincode() {
+		return pincode;
+	}
+
+	public void setPincode(Integer pincode) {
+		this.pincode = pincode;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		Address other = (Address) obj;
+		return Objects.equals(city, other.city) && Objects.equals(pincode, other.pincode)
+				&& Objects.equals(street, other.street);
+	}
+
+	@Override
+	public String toString() {
+		return street + "," + city + "-" + pincode;
+	}
+
+}
+
+
+//... Customer.java....
+
+import java.util.Objects;
+
+public class Customer {
+	private String name;
+	private Address address;
+
+	public Customer() {
+	}
+
+	public Customer(String name, Address address) {
+		this.name = name;
+		this.address = address;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (obj == null) {
+			return false;
+		}
+
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+
+		Customer other = (Customer) obj;
+		return Objects.equals(name, other.name) && this.address.equals(other.getAddress());
+	}
+
+	@Override
+	public String toString() {
+		return "Name:" + name + "\nAddress:" + address.getStreet() + "," + address.getCity() + "-"
+				+ address.getPincode();
+	}
+
+}
+
+
+// Main.java
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Customer[] customers = null, duplicateCustomers = null;
+		Customer customer = null;
+		Address address = null;
+		int customersCount = 0, i = 0, duplicateCustomersCount = 0;
+
+		try (Scanner scanner = new Scanner(System.in)) {
+			customers = new Customer[100];
+			duplicateCustomers = new Customer[100];
+
+			System.out.println("Enter the number of customers");
+			customersCount = scanner.nextInt();
+
+			do {
+				customer = new Customer();
+				address = new Address();
+
+				System.out.printf("Enter the Customer Details %d \n", i + 1);
+				System.out.println("Enter the name");
+				customer.setName(scanner.next());
+
+				System.out.println("Enter the street");
+				address.setStreet(scanner.next());
+
+				System.out.println("Enter the city");
+				address.setCity(scanner.next());
+
+				System.out.println("Enter the pincode");
+				address.setPincode(scanner.nextInt());
+
+				customer.setAddress(address);
+				customers[i] = customer;
+			} while (++i < customersCount);
+
+			for (i = 0; i < customersCount; i++) {
+				for (int j = i + 1; j < customersCount; j++) {
+					if (customers[i].equals(customers[j])) {
+						duplicateCustomers[duplicateCustomersCount++] = customers[i];
+					}
+				}
+			}
+
+			if (duplicateCustomers[0] == null) {
+				System.out.println("No duplicate details");
+			} else {
+				System.out.println("The identical Customers Details:");
+
+				for (i = 0; i < duplicateCustomersCount; i++) {
+					System.out.println((i + 1) + ")" + duplicateCustomers[i]);
+				}
+			}
+
+		} catch (InputMismatchException inputMismatchException) {
+			System.err.println("Error: Invalid input");
+		} catch (Exception exception) {
+			System.err.println("Error: An error occurred");
+		}
+
+	}
+
+}
+
+=============================================================
+
+
+
+4)Address.java:
+----------------
+
+public class Address {
+	private String street;
+	private String city;
+	private Integer pincode;
+
+	public Address() {
+	}
+
+	public Address(String street, String city, Integer pincode) {
+		this.street = street;
+		this.city = city;
+		this.pincode = pincode;
+	}
+
+	public String getStreet() {
+		return street;
+	}
+
+	public void setStreet(String street) {
+		this.street = street;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public Integer getPincode() {
+		return pincode;
+	}
+
+	public void setPincode(Integer pincode) {
+		this.pincode = pincode;
+	}
+
+	@Override
+	public String toString() {
+		return street + "," + city + "-" + pincode;
+	}
+
+}
+
+
+// Customer.java
+public class Customer {
+	private String name;
+	private Address address;
+
+	public Customer() {
+	}
+
+	public Customer(String name, Address address) {
+		this.name = name;
+		this.address = address;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	@Override
+	public String toString() {
+		return name + " " + address.toString();
+	}
+
+}
+
+// Main.java
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Customer customer = null;
+		Address address = null;
+
+		try (Scanner scanner = new Scanner(System.in)) {
+			customer = new Customer();
+			address = new Address();
+
+			System.out.println("Enter the name");
+			customer.setName(scanner.next());
+
+			System.out.println("Enter the street");
+			address.setStreet(scanner.next());
+
+			System.out.println("Enter the city");
+			address.setCity(scanner.next());
+
+			System.out.println("Enter the pincode");
+			address.setPincode(scanner.nextInt());
+
+			customer.setAddress(address);
+
+			System.out.println(customer);
+
+		} catch (InputMismatchException inputMismatchException) {
+			System.err.println("Error: Invalid input");
+		} catch (Exception exception) {
+			System.err.println("Error: An error occurred");
+		}
+
+	}
+
+}
+
